@@ -1,4 +1,4 @@
-**Commandes Python**
+**Commandes Bash**
 ====================
 
 **1. Commandes de base**
