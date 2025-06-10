@@ -27,4 +27,4 @@ language = 'fr'
 html_theme = "sphinx_rtd_theme"
 html_static_path = ['_static']
 
-# html_baseurl = "https://carcinome.github.io/documentationPython/"
+html_baseurl = "https://github.com/Carcinome/documentationBash.git"
