@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'Documentation Python'
+project = 'Documentation Bash'
 copyright = '2025, Clément "Carcinome" Aicardi'
 author = 'Clément "Carcinome" Aicardi'
 release = 'alpha_v0.1'
