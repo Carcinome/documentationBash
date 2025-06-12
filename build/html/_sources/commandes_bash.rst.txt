@@ -213,7 +213,7 @@ Permet de supprimer fichiers et dossiers.
     **Commande puissante, éviter le plus possible l'option `-rf` à moins d'être sûr de soi.** (Bien que faire `rm -rf /*` sur le pc des copains à l'école était assez drôle).
 
 
-**1.5 man / help**
+**1.7 man / help**
 ^^^^^^^^^^^^^^^^^^
 
 **Syntaxe :**
