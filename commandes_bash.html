@@ -52,7 +52,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#id2"><strong>1.2 #</strong></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ll-ls"><strong>1.3 ll / ls</strong></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cp-scp"><strong>1.4 cp / scp</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#print"><strong>1.5 print</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mv"><strong>1.5 mv</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rm"><strong>1.6 rm</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#man-help"><strong>1.5 man / help</strong></a></li>
 </ul>
 </li>
 </ul>
@@ -103,7 +105,7 @@
 <p class="admonition-title">Note</p>
 <ul class="simple">
 <li><p>S’assurer d’être dans le bon dossier, sinon pointer en dur (<em>chemin absolu</em>) vers le dossier contenant le script.</p></li>
-<li><p>Penser à se donner les droits d’exécution sur le dossier contenant les scripts. (<em>chmod</em>)</p></li>
+<li><p>Penser à se donner les droits d’exécution sur le dossier contenant les scripts. (<cite>chmod</cite>)</p></li>
 </ul>
 </div>
 <div class="admonition warning">
@@ -112,7 +114,7 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 </pre></div>
 </div>
-<p>En début de script, sans quoi ce dernier ne se lancera pas. Ne pas confondre avec les commentaires marqués <em>#</em>.</p>
+<p>En début de script, sans quoi ce dernier ne se lancera pas. Ne pas confondre avec les commentaires marqués <cite>#</cite>.</p>
 </div>
 </section>
 <section id="id2">
@@ -125,10 +127,6 @@
 <p><em>Exemple :</em></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># ceci est un commentaire</span>
 </pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p># Utilisé pour commenter sur une ligne.</p>
 </div>
 </section>
 <section id="ll-ls">
@@ -158,8 +156,8 @@ drwxr-xr-x.<span class="w"> </span><span class="m">4</span><span class="w"> </sp
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <ul class="simple">
-<li><p><em>ll</em>, plus précis que <em>ls</em>, permet d’afficher les droits d’accès, le propriétaire, la date de la dernière modification, etc.</p></li>
-<li><p>L’utilisation du pipe <em>|</em> est possible, associé à un <em>grep</em> pour filtrer les résultats attendus via mot-clé.</p></li>
+<li><p><cite>ll</cite>, plus précis que <cite>ls</cite>, permet d’afficher les droits d’accès, le propriétaire, la date de la dernière modification, etc.</p></li>
+<li><p>L’utilisation du pipe <cite>|</cite> est possible, associé à un <cite>grep</cite> pour filtrer les résultats attendus via mot-clé.</p></li>
 </ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>/usr/bin/<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;chains&quot;</span>
 </pre></div>
@@ -177,13 +175,13 @@ ll<span class="w"> </span>/usr/bin/<span class="w"> </span><span class="p">|</sp
 <section id="cp-scp">
 <h3><strong>1.4 cp / scp</strong><a class="headerlink" href="#cp-scp" title="Lien vers cette rubrique"></a></h3>
 <p><strong>Syntaxe :</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>&lt;option&gt;<span class="w"> </span>&lt;fichier_à_copier&gt;<span class="w"> </span>&lt;dossier_destination&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>&lt;option&gt;<span class="w"> </span>&lt;fichier_a_copier&gt;<span class="w"> </span>&lt;dossier_destination&gt;
 scp<span class="w"> </span>&lt;option&gt;<span class="w"> </span>&lt;dossier_source&gt;<span class="w"> </span>&lt;dossier_destination&gt;
 </pre></div>
 </div>
-<p>Permet de copier des fichiers d’un endroit à un autre. <em>scp</em> permet de copier les fichiers en réseau de manière sécurisé.</p>
+<p>Permet de copier des fichiers d’un endroit à un autre.  <cite>scp</cite> permet de copier les fichiers en réseau de manière sécurisé.</p>
 <p><em>Exemple :</em></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>text.txt<span class="w"> </span>~/Documents/dossierDestination
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>test.txt<span class="w"> </span>~/Documents/dossierDestination
 scp<span class="w"> </span>aicardic@z420:/chemin/vers/repertoire/fichier.txt<span class="w"> </span><span class="s2">&quot;~/Documents/&quot;</span>
 scp<span class="w"> </span>aicardic@z420:/chemin/vers/repertoire/fichier.txt<span class="w"> </span>.
 </pre></div>
@@ -192,8 +190,8 @@ scp<span class="w"> </span>aicardic@z420:/chemin/vers/repertoire/fichier.txt<spa
 <p class="admonition-title">Note</p>
 <ul>
 <li><dl class="simple">
-<dt>Concernant <em>scp</em> :</dt><dd><ul class="simple">
-<li><p>on peut remplacer le chemin absolu local <strong>actuel</strong> par un <em>point (.)</em>.</p></li>
+<dt>Concernant <cite>scp</cite> :</dt><dd><ul class="simple">
+<li><p>on peut remplacer le chemin absolu local <strong>actuel</strong> par un point « <cite>.</cite> ».</p></li>
 <li><p>La syntaxe pour la copie de ou vers un dossier distant prend le nom utisateur de l’hôte &#64; le nom de l’hôte (<em>aicardic&#64;z420</em>).</p></li>
 <li><p>La modification du nom du fichier copié est possible, il suffit de changer le nom à la fin du chemin de destination.</p></li>
 </ul>
@@ -202,40 +200,95 @@ scp<span class="w"> </span>aicardic@z420:/chemin/vers/repertoire/fichier.txt<spa
 </li>
 <li><p>La copie de plusieurs fichiers d’un seul coup est possible, comme ceci :</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>text1.txt<span class="w"> </span>text2.txt<span class="w"> </span>~/Documents/dossierDestination
-scp<span class="w"> </span>text1.txt<span class="w"> </span>text2.txt<span class="w"> </span>aicardic@z420:/chemin/vers/repertoire
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>test1.txt<span class="w"> </span>test2.txt<span class="w"> </span>~/Documents/dossierDestination
+scp<span class="w"> </span>test1.txt<span class="w"> </span>test2.txt<span class="w"> </span>aicardic@z420:/chemin/vers/repertoire
 </pre></div>
 </div>
 </div></blockquote>
 </li>
-<li><p>L’option <em>-r</em> permet de copier le repertoire indiqué de manière récursive.</p></li>
-<li><p>L’option <em>-C</em> permet de compresser les fichiers transférés pour alléger leur poids.</p></li>
+<li><p>L’option <cite>-r</cite> permet de copier le repertoire indiqué de manière récursive.</p></li>
+<li><p>L’option <cite>-C</cite> permet de compresser les fichiers transférés pour alléger leur poids.</p></li>
 </ul>
 </div>
 </section>
-<section id="print">
-<h3><strong>1.5 print</strong><a class="headerlink" href="#print" title="Lien vers cette rubrique"></a></h3>
+<section id="mv">
+<h3><strong>1.5 mv</strong><a class="headerlink" href="#mv" title="Lien vers cette rubrique"></a></h3>
 <p><strong>Syntaxe :</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>print<span class="o">(</span><span class="s2">&quot;texte à afficher&quot;</span><span class="o">)</span>
-print<span class="o">(</span>f<span class="s2">&quot;texte à afficher contenant des {variables}.&quot;</span><span class="o">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dans le répertoire courant</span>
+mv<span class="w"> </span>&lt;fichier_a_deplacer&gt;<span class="w"> </span>&lt;dossier_destination&gt;
+
+<span class="c1"># Hors du répertoire courant</span>
+mv<span class="w"> </span>&lt;dossier_source&gt;<span class="w"> </span>&lt;dossier_destination&gt;
 </pre></div>
 </div>
-<p>Equivalent d”<cite>echo</cite> ou de <cite>printf</cite>, permet d’afficher du texte, des charactères, variables et autre.</p>
+<p>Permet de couper/coller des fichiers, peut aussi être utilisé pour renommer des fichiers.</p>
 <p><em>Exemple :</em></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>print<span class="o">(</span><span class="s2">&quot;Hello world!&quot;</span><span class="o">)</span>
-<span class="c1"># On définit une variable en amont, age = 32.</span>
-print<span class="o">(</span>age<span class="o">)</span>
-print<span class="o">(</span><span class="s2">&quot;Je m&#39;appelle Clément et j&#39;ai&quot;</span>,<span class="w"> </span><span class="o">{</span>age<span class="o">}</span><span class="w"> </span><span class="s2">&quot;ans.&quot;</span><span class="o">)</span><span class="w"> </span><span class="c1"># Désuet, privilégier le f-string comme ci-dessous.</span>
-print<span class="o">(</span>f<span class="s2">&quot;Je m&#39;appelle Clément et j&#39;ai {age}.&quot;</span><span class="o">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dans le répertoire courant</span>
+mv<span class="w"> </span>test.txt<span class="w"> </span>~/dossierDestination/copie_test.txt
+
+<span class="c1"># Hors du répertoire courant</span>
+mv<span class="w"> </span>~/DossierSource/test.txt<span class="w"> </span>~/DossierDestination/
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Avertissement</p>
+<ul class="simple">
+<li><p>Le fait de renommer un fichier n’est possible que si le fichier en question se trouve dans le repertoire courant.</p></li>
+<li><p><strong>Dans Linux, un dossier est un fichier.</strong> &gt;&gt; <a class="reference external" href="https://fr.linkedin.com/learning/linux-les-disques-et-le-stockage/comprendre-le-concept-du-tout-est-fichier">https://fr.linkedin.com/learning/linux-les-disques-et-le-stockage/comprendre-le-concept-du-tout-est-fichier</a></p></li>
+</ul>
+</div>
+</section>
+<section id="rm">
+<h3><strong>1.6 rm</strong><a class="headerlink" href="#rm" title="Lien vers cette rubrique"></a></h3>
+<p><strong>Syntaxe :</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dans le répertoire courant</span>
+rm<span class="w"> </span>&lt;option&gt;<span class="w"> </span>&lt;fichier_a_supprimer&gt;
+
+<span class="c1"># Hors du répertoire courant</span>
+rm<span class="w"> </span>&lt;option&gt;<span class="w"> </span>&lt;dossier_source&gt;
+</pre></div>
+</div>
+<p>Permet de supprimer fichiers et dossiers.</p>
+<p><em>Exemple :</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dans le répertoire courant</span>
+rm<span class="w"> </span>-f<span class="w"> </span>test.txt
+
+<span class="c1"># Hors du répertoire courant</span>
+rm<span class="w"> </span>-rf<span class="w"> </span>~/dossierSource/dossier_a_supprimer
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <ul class="simple">
-<li><p>Les variables sont appelées sans <cite>« « </cite>.</p></li>
-<li><p>Les chaîne de caractères (string) sont appelées avec <cite>« « </cite>.</p></li>
-<li><p>Pour l’inclusion des variables dans une string, on privilégiera le <cite>f-string</cite>.</p></li>
-<li><p>Les accolades <cite>{}</cite> sont obligatoires lorsque des variables sont appelées avec des strings.</p></li>
+<li><p>L’option <cite>-r</cite> permet la récursivité de la commande, supprimant ainsi dossier et sous-dossier.</p></li>
+<li><p>L’option <cite>-f</cite> permet de forcer la suppression sans requête utilisateur.</p></li>
+<li><p>L’option <cite>-i</cite> permet de demander une confirmation supplémentaire à chaque suppression.</p></li>
+<li><p>L’option <cite>-v</cite> permet d’indiquer l’action en cours de réalisation.</p></li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Avertissement</p>
+<p><strong>Commande puissante, éviter le plus possible l’option `-rf` à moins d’être sûr de soi.</strong> (Bien que faire <cite>rm -rf /*</cite> sur le pc des copains à l’école était assez drôle).</p>
+</div>
+</section>
+<section id="man-help">
+<h3><strong>1.5 man / help</strong><a class="headerlink" href="#man-help" title="Lien vers cette rubrique"></a></h3>
+<p><strong>Syntaxe :</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>man
+<span class="nb">help</span>
+</pre></div>
+</div>
+<p>Permet de consulter l’aide d’une commande.</p>
+<p><em>Exemple :</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>man<span class="w"> </span>lsblk
+<span class="nb">help</span><span class="w"> </span>mapfile
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>La commande <cite>man</cite> est utilisée pour obtenir de l’aide sur des programmes ou commandes externes au shell bash.</p></li>
+<li><p>La commande <cite>help</cite> est utilisée pour obtenir de l’aider sur les commandes et fonctions internes au shell bash.</p></li>
 </ul>
 </div>
 </section>
