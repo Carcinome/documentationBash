@@ -4,147 +4,157 @@
 **1. Commandes de base**
 ------------------------
 
-**1.1 python3**
+**1.1 ./**
 ^^^^^^^^^^^^^^^
 
 **Syntaxe :**
 
-.. code-block:: python
+.. code-block:: bash
 
-    python3
+    ./
 
-Permet de lancer des scripts Python.
+Permet d'exécuter des scripts bash.
 
 *Exemple :* 
 
-.. code-block:: python
+.. code-block:: bash
 
-    python3 mon_script.py
-    python3 -m venv env
+    ./monscript.sh
+    ~/Documents/Scripts/monscript.sh
 
 .. note::
 
-    Pas besoin de le spécifier si le chemin d'accès est dans le PATH et qu'on place la ligne de commande suivante en tête de script :
+    - S'assurer d'être dans le bon dossier, sinon pointer en dur (*chemin absolu*) vers le dossier contenant le script. 
+    - Penser à se donner les droits d'exécution sur le dossier contenant les scripts. (*chmod*)
 
-    .. code-block:: python
+.. warning::
 
-        #!/usr/bin/env python
-    
-    -m pour spécifier qu'on souhaite utiliser un module de Python et non un fichier script.
+    Ne pas oublier la commande 
 
-**1.2 # et """commentaire"""**
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    .. code-block::
+
+        #!/bin/bash
+
+    En début de script, sans quoi ce dernier ne se lancera pas. Ne pas confondre avec les commentaires marqués *#*.
+
+
+**1.2 #** 
+^^^^^^^^^
 
 **Syntaxe :**
 
-.. code-block:: python
+.. code-block:: bash
 
     # en début de ligne
-    """mettre ici le texte qui peut tenir 
-    sur plusieurs lignes et inclure fonctions et autres."""
+   
 
 Permet de commenter le code. **Capital** pour maintenir un code à jour, propre et simple d'utilisation notamment pour les autres utilisateurs.
 
 *Exemple :* 
 
-.. code-block:: python
+.. code-block:: bash
 
     # ceci est un commentaire
-    """ Ceci est une chaine de commentaires, 
-    utilisée pour les fonctions par exemple, 
-    et ça tient sur plusieurs lignes. """
+    
 
 .. note::
 
     # Utilisé pour commenter sur une ligne.
 
-    """ Permet de commenter sur plusieurs lignes, on peut s'en servir pour générer des tooltips dans le cadre de fonctions et classes par exemple. 
 
-**1.3 import / from**
-^^^^^^^^^^^^^^^^^^^^^
+**1.3 ll / ls**
+^^^^^^^^^^^^^^^
 
 **Syntaxe :**
 
-.. code-block:: python
+.. code-block:: bash
     
-    import
-    from
+    ll
+    ls
 
-- Permet d'importer un module (fichier contenant du code Python). 
-- Ce dernier peut contenir des fonctions, des classes, des variables etc. 
-- Pratique pour organiser le code de manière logique et réutilisable.\
-- **A placer en début de code.**
+Permet de faire le listing des fichiers et dossiers présents dans le dossier courant. 
 
 *Exemple :* 
 
-.. code-block:: python
+.. code-block:: bash
 
-    import mon_module
+    ls
     #resultat
-    mon_module.ma_fonction()
+    Makefile  README.md  build  env_sphinx_v1  make.bat  requirements.txt  source
 
-    from mon_module import ma_fonction
+    ll
     #resultat
-    ma_fonction() # Directement exploitable sans spécifier le module.
+    -rw-r--r--. 1 aicardic aicardic  638 Jun 10 15:59 Makefile
+    -rw-r--r--. 1 aicardic aicardic    0 Jun 10 16:02 README.md
+    drwxr-xr-x. 4 aicardic aicardic 4096 Jun 10 16:12 build
+    drwxr-xr-x. 5 aicardic aicardic 4096 Jun 10 15:57 env_sphinx_v1
+    -rw-r--r--. 1 aicardic aicardic  804 Jun 10 15:59 make.bat
+    -rw-r--r--. 1 aicardic aicardic  952 Jun 10 15:53 requirements.txt
+    drwxr-xr-x. 4 aicardic aicardic 4096 Jun 10 16:11 source
 
 .. note::
 
-    - Il faut impérativement penser à spécifier le nom du module avant d'appeler la fonction, sauf si on utilise `from`. 
-    - Pour importer plusieurs éléments spécifiques, il suffit de les séparer par des virgules. 
-    - Il ne faut pas mettre l'extension de fichiers .py quand on appelle l'import.
-
-.. tip::
-
-    On peut utiliser `as` pour attacher un alias à l'import de manière à clarifier le code et le rendre moins lourd. Voici un exemple :
+    - *ll*, plus précis que *ls*, permet d'afficher les droits d'accès, le propriétaire, la date de la dernière modification, etc. 
+    - L'utilisation du pipe *|* est possible, associé à un *grep* pour filtrer les résultats attendus via mot-clé.
     
-    .. code-block:: python
+    .. code-block:: bash
+
+        ls /usr/bin/ | grep "chains"
+
+    - On peut utliser *>* pour rediriger le flux généré vers un fichier. 
+    - Plusieurs paramètres sont combinables. 
+
+    .. code-block:: bash
+
+        ls /usr/bin/ > ~/Documents/test.txt
+        ll /usr/bin/ | grep "chains" > ~/Documents/test2.txt
+
+
+**1.4 cp / scp**
+^^^^^^^^^^^^^^^^
+
+**Syntaxe :**
+
+.. code-block:: bash
+    
+    cp <option> <fichier_à_copier> <dossier_destination>
+    scp <option> <dossier_source> <dossier_destination>
+
+    
+Permet de copier des fichiers d'un endroit à un autre. *scp* permet de copier les fichiers en réseau de manière sécurisé. 
+
+*Exemple :* 
+
+.. code-block:: bash
+
+    cp text.txt ~/Documents/dossierDestination
+    scp aicardic@z420:/chemin/vers/repertoire/fichier.txt "~/Documents/"
+    scp aicardic@z420:/chemin/vers/repertoire/fichier.txt .
+
+.. note::
+
+    - Concernant *scp* :
+        - on peut remplacer le chemin absolu local **actuel** par un *point (.)*. 
+        - La syntaxe pour la copie de ou vers un dossier distant prend le nom utisateur de l'hôte @ le nom de l'hôte (*aicardic@z420*).
+        - La modification du nom du fichier copié est possible, il suffit de changer le nom à la fin du chemin de destination.
         
-        import numpy as np
+    - La copie de plusieurs fichiers d'un seul coup est possible, comme ceci : 
 
-**1.4 pip**
-^^^^^^^^^^^
+        .. code-block:: bash
 
-**Syntaxe :**
+            cp text1.txt text2.txt ~/Documents/dossierDestination
+            scp text1.txt text2.txt aicardic@z420:/chemin/vers/repertoire
 
-.. code-block:: python
-    
-    pip install <nom_du_package>
-    pip uninstall <nom_du_package>
-    pip freeze
-    pip show 
-    pip list
-    
-Gestionnaire de paquets inclu dans Python pour gérer des packages.
+    - L'option *-r* permet de copier le repertoire indiqué de manière récursive.
+    - L'option *-C* permet de compresser les fichiers transférés pour alléger leur poids.
 
-*Exemple :* 
-
-.. code-block:: python
-
-    pip install numpy
-    pip uninstall numpy
-    pip freeze
-    pip freeze > requirements.txt
-    pip list
-    pip show numpy requests pandas
-    pip install -r requirements.txt
-
-.. note::
-
-    - A utiliser dans un shell et non dans Python directement. 
-    - Doit être installé au préalable.
-    - On peut installer des versions spécifiques des packages avec ==, ~=, > et >0.0.0<.
-    - On peut installer plusieurs packages en les séparant par de espaces.
-    - `-r` est utilisé pour spécifier un fichier "requirements.txt" contenant la liste des scripts à installer. Pratique pour élaborer des listes de packages "to use".
-    - `uninstall` pour désinstaller un package.
-    - `freeze` et `list` pour afficher la liste des packages installés. `freeze` est plus complet que `list` et permet d'incrémenter un fichier requirements.txt.
-    - `show` permet de voir les informations des packages passés en argument. 
 
 **1.5 print**
 ^^^^^^^^^^^^^
 
 **Syntaxe :**
 
-.. code-block:: python
+.. code-block:: bash
     
     print("texte à afficher")
     print(f"texte à afficher contenant des {variables}.")
@@ -153,7 +163,7 @@ Equivalent d'`echo` ou de `printf`, permet d'afficher du texte, des charactères
 
 *Exemple :* 
 
-.. code-block:: python
+.. code-block:: bash
 
     print("Hello world!")
     # On définit une variable en amont, age = 32.
