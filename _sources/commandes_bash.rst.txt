@@ -141,8 +141,9 @@ Permet de copier des fichiers d'un endroit à un autre.  `scp` permet de copier 
             cp test1.txt test2.txt ~/Documents/dossierDestination
             scp test1.txt test2.txt aicardic@z420:/chemin/vers/repertoire
 
-    - L'option `-r` permet de copier le repertoire indiqué de manière récursive.
-    - L'option `-C` permet de compresser les fichiers transférés pour alléger leur poids.
+    - *Options connues :*
+        - L'option `-r` permet de copier le repertoire indiqué de manière récursive.
+        - L'option `-C` permet de compresser les fichiers transférés pour alléger leur poids.
 
 
 **1.5 mv**
@@ -201,7 +202,7 @@ Permet de supprimer fichiers et dossiers.
     # Hors du répertoire courant
     rm -rf ~/dossierSource/dossier_a_supprimer 
 
-.. note:: 
+.. note:: *options connues :*
 
     - L’option `-r` permet la récursivité de la commande, supprimant ainsi dossier et sous-dossier.
     - L’option `-f` permet de forcer la suppression sans requête utilisateur.
@@ -220,8 +221,8 @@ Permet de supprimer fichiers et dossiers.
 
 .. code-block:: bash
 
-    man
-    help
+    man <commande>
+    help <commande>
 
 Permet de consulter l'aide d'une commande.
 
@@ -237,3 +238,129 @@ Permet de consulter l'aide d'une commande.
     - La commande `man` est utilisée pour obtenir de l'aide sur des programmes ou commandes externes au shell bash.
     - La commande `help` est utilisée pour obtenir de l'aider sur les commandes et fonctions internes au shell bash.
     
+
+**1.8 sudo su - / su -**
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Syntaxe :**
+
+.. code-block:: bash
+
+    sudo su -
+    sudo <commande>
+    su -
+
+Permet l'élévation des privilèges ou la connexion en *root*.
+
+*Exemple :* 
+
+.. code-block:: bash
+
+    sudo dnf install python3
+    su - 
+    # Remplir la demande de login utilisateur root. 
+
+.. note::
+
+    Il se peut que le compte root soit désactivé pour des raisons de durcissement,dans ce cas là seul l'élévation de privilège via `sudo` ou `sudo su -` fonctionnera.
+
+
+**1.9 vi / vim**
+^^^^^^^^^^^^^^^^
+
+**Syntaxe :**
+
+.. code-block:: bash
+
+    vi <fichier>
+    vim <fichier>
+
+Permet d'éditer des fichiers textuels. `vim` est une version améliorée de `vi`, les deux fonctionnent de la même façon. C'est en quelque sorte un éditeur de texte en ligne de commande.
+
+**Outil puissant à manipuler avec précaution.** 
+
+*Exemple :* 
+
+.. code-block:: bash
+
+    vim ~/Documents/Documentation/bash/requirements.txt
+    vim ~/Documents/Documentation/bash/conf.py
+    
+.. note::
+
+    - Tout type de fichiers textuels peuvent être édités par `vi / vim` (`.py`, `.sh`, `.cfg`..).
+    - L'éditeur dispose de son propre langage : 
+        
+        .. code-block::
+            
+            i # Permet de modifier le fichier.
+            x # Permet de supprimer le caractère sous le curseur.
+            dw # Permet de supprimer un mot. 
+            dd # Permet de supprimer une ligne.
+            yy # Permet de copier la ligne actuelle.
+            p # Permet de coller après le curseur.
+            u # Permet d'annuler la dernier commande. 
+            :w # Permet de sauvegarder les modifications.
+            :wq # Permet de sauvegarder les modifications et quitter l'éditeur de texte.
+            :q # Permet de quitter l'éditeur de texte.
+            :q! # Permet de quitter l'éditeur de texte sansa sauvegarder les modifications.
+
+
+**1.10 dnf**
+^^^^^^^^^^^^
+
+**Syntaxe :**
+
+.. code-block:: bash
+
+    dnf <option> <package>
+
+Permet l'installation et la manipulation de rpm, de packages, de repository et leur gestion.
+
+*Exemple :* 
+
+.. code-block:: bash
+
+    sudo dnf install python3
+    sudo dnf provides /usr/bin/fichier
+    dnf search NetworkManager
+
+.. note:: *options connues :*
+
+    - L'option `install` permet d'installer des rpm. 
+    - L'option `provides` permet d'identifier quel package fournit une fonctionnalité, un fichier ou une capacité spécifique. 
+    - L'option `upgrade` permet de mettre à jour un package ou la distribution.
+    - L'option `search` permet de faire une recherche via mot-clé.
+    - L'option `repolist` permet d'afficher les repository configurés. `--all` pour tous les afficher.
+    - L'option `config-manager` permet de gérer les repository présents, permet de les activer avec `enable` et les désactiver avec `disable`.
+    - L'option `clean all` permet de vider le cache dnf. 
+
+    **NB :** La commande `rpm -qa` permet de lister tous les packages rpm installés. 
+
+
+**1.11 lsblk**
+^^^^^^^^^^^^^^
+
+**Syntaxe :**
+
+.. code-block:: bash
+
+    lsblk <option>
+
+Permet d'optenir la liste et les caractéristiques des disques et de leurs partitions.
+
+*Exemple :* 
+
+.. code-block:: bash
+
+    lsblk 
+    lsblk -f
+
+.. note:: *options connues :*
+
+    - L'option `-f` permet d'afficher la liste complète.
+
+.. note::
+
+    - La valeur MOUNTPOINTS est le chemin monté du disque ou de la partition en question.
+ 

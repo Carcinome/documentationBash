@@ -9,6 +9,7 @@
   <title>Commandes Bash &mdash; Documentation Documentation Bash alpha_v0.1</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
 
   
     <link rel="canonical" href="https://github.com/Carcinome/documentationBash.git/commandes_bash.html" />
@@ -17,6 +18,8 @@
       <script src="_static/documentation_options.js?v=63139195"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
       <script src="_static/translations.js?v=e6b791cb"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -55,6 +58,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#mv"><strong>1.5 mv</strong></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rm"><strong>1.6 rm</strong></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#man-help"><strong>1.7 man / help</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sudo-su-su"><strong>1.8 sudo su - / su -</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vi-vim"><strong>1.9 vi / vim</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dnf"><strong>1.10 dnf</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lsblk"><strong>1.11 lsblk</strong></a></li>
 </ul>
 </li>
 </ul>
@@ -206,8 +213,14 @@ scp<span class="w"> </span>test1.txt<span class="w"> </span>test2.txt<span class
 </div>
 </div></blockquote>
 </li>
+<li><dl class="simple">
+<dt><em>Options connues :</em></dt><dd><ul class="simple">
 <li><p>L’option <cite>-r</cite> permet de copier le repertoire indiqué de manière récursive.</p></li>
 <li><p>L’option <cite>-C</cite> permet de compresser les fichiers transférés pour alléger leur poids.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 </div>
 </section>
@@ -259,6 +272,7 @@ rm<span class="w"> </span>-rf<span class="w"> </span>~/dossierSource/dossier_a_s
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
+<p><em>options connues :</em></p>
 <ul class="simple">
 <li><p>L’option <cite>-r</cite> permet la récursivité de la commande, supprimant ainsi dossier et sous-dossier.</p></li>
 <li><p>L’option <cite>-f</cite> permet de forcer la suppression sans requête utilisateur.</p></li>
@@ -274,8 +288,8 @@ rm<span class="w"> </span>-rf<span class="w"> </span>~/dossierSource/dossier_a_s
 <section id="man-help">
 <h3><strong>1.7 man / help</strong><a class="headerlink" href="#man-help" title="Lien vers cette rubrique"></a></h3>
 <p><strong>Syntaxe :</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>man
-<span class="nb">help</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>man<span class="w"> </span>&lt;commande&gt;
+<span class="nb">help</span><span class="w"> </span>&lt;commande&gt;
 </pre></div>
 </div>
 <p>Permet de consulter l’aide d’une commande.</p>
@@ -289,6 +303,118 @@ rm<span class="w"> </span>-rf<span class="w"> </span>~/dossierSource/dossier_a_s
 <ul class="simple">
 <li><p>La commande <cite>man</cite> est utilisée pour obtenir de l’aide sur des programmes ou commandes externes au shell bash.</p></li>
 <li><p>La commande <cite>help</cite> est utilisée pour obtenir de l’aider sur les commandes et fonctions internes au shell bash.</p></li>
+</ul>
+</div>
+</section>
+<section id="sudo-su-su">
+<h3><strong>1.8 sudo su - / su -</strong><a class="headerlink" href="#sudo-su-su" title="Lien vers cette rubrique"></a></h3>
+<p><strong>Syntaxe :</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>su<span class="w"> </span>-
+sudo<span class="w"> </span>&lt;commande&gt;
+su<span class="w"> </span>-
+</pre></div>
+</div>
+<p>Permet l’élévation des privilèges ou la connexion en <em>root</em>.</p>
+<p><em>Exemple :</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>python3
+su<span class="w"> </span>-
+<span class="c1"># Remplir la demande de login utilisateur root.</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Il se peut que le compte root soit désactivé pour des raisons de durcissement,dans ce cas là seul l’élévation de privilège via <cite>sudo</cite> ou <cite>sudo su -</cite> fonctionnera.</p>
+</div>
+</section>
+<section id="vi-vim">
+<h3><strong>1.9 vi / vim</strong><a class="headerlink" href="#vi-vim" title="Lien vers cette rubrique"></a></h3>
+<p><strong>Syntaxe :</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vi<span class="w"> </span>&lt;fichier&gt;
+vim<span class="w"> </span>&lt;fichier&gt;
+</pre></div>
+</div>
+<p>Permet d’éditer des fichiers textuels. <cite>vim</cite> est une version améliorée de <cite>vi</cite>, les deux fonctionnent de la même façon. C’est en quelque sorte un éditeur de texte en ligne de commande.</p>
+<p><strong>Outil puissant à manipuler avec précaution.</strong></p>
+<p><em>Exemple :</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vim<span class="w"> </span>~/Documents/Documentation/bash/requirements.txt
+vim<span class="w"> </span>~/Documents/Documentation/bash/conf.py
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li><p>Tout type de fichiers textuels peuvent être édités par <cite>vi / vim</cite> (<cite>.py</cite>, <cite>.sh</cite>, <cite>.cfg</cite>..).</p></li>
+<li><p>L’éditeur dispose de son propre langage :</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>i # Permet de modifier le fichier.
+x # Permet de supprimer le caractère sous le curseur.
+dw # Permet de supprimer un mot.
+dd # Permet de supprimer une ligne.
+yy # Permet de copier la ligne actuelle.
+p # Permet de coller après le curseur.
+u # Permet d&#39;annuler la dernier commande.
+:w # Permet de sauvegarder les modifications.
+:wq # Permet de sauvegarder les modifications et quitter l&#39;éditeur de texte.
+:q # Permet de quitter l&#39;éditeur de texte.
+:q! # Permet de quitter l&#39;éditeur de texte sansa sauvegarder les modifications.
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</section>
+<section id="dnf">
+<h3><strong>1.10 dnf</strong><a class="headerlink" href="#dnf" title="Lien vers cette rubrique"></a></h3>
+<p><strong>Syntaxe :</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dnf<span class="w"> </span>&lt;option&gt;<span class="w"> </span>&lt;package&gt;
+</pre></div>
+</div>
+<p>Permet l’installation et la manipulation de rpm, de packages, de repository et leur gestion.</p>
+<p><em>Exemple :</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>python3
+sudo<span class="w"> </span>dnf<span class="w"> </span>provides<span class="w"> </span>/usr/bin/fichier
+dnf<span class="w"> </span>search<span class="w"> </span>NetworkManager
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>options connues :</em></p>
+<ul class="simple">
+<li><p>L’option <cite>install</cite> permet d’installer des rpm.</p></li>
+<li><p>L’option <cite>provides</cite> permet d’identifier quel package fournit une fonctionnalité, un fichier ou une capacité spécifique.</p></li>
+<li><p>L’option <cite>upgrade</cite> permet de mettre à jour un package ou la distribution.</p></li>
+<li><p>L’option <cite>search</cite> permet de faire une recherche via mot-clé.</p></li>
+<li><p>L’option <cite>repolist</cite> permet d’afficher les repository configurés. <cite>–all</cite> pour tous les afficher.</p></li>
+<li><p>L’option <cite>config-manager</cite> permet de gérer les repository présents, permet de les activer avec <cite>enable</cite> et les désactiver avec <cite>disable</cite>.</p></li>
+<li><p>L’option <cite>clean all</cite> permet de vider le cache dnf.</p></li>
+</ul>
+<p><strong>NB :</strong> La commande <cite>rpm -qa</cite> permet de lister tous les packages rpm installés.</p>
+</div>
+</section>
+<section id="lsblk">
+<h3><strong>1.11 lsblk</strong><a class="headerlink" href="#lsblk" title="Lien vers cette rubrique"></a></h3>
+<p><strong>Syntaxe :</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lsblk<span class="w"> </span>&lt;option&gt;
+</pre></div>
+</div>
+<p>Permet d’optenir la liste et les caractéristiques des disques et de leurs partitions.</p>
+<p><em>Exemple :</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lsblk
+lsblk<span class="w"> </span>-f
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>options connues :</em></p>
+<ul class="simple">
+<li><p>L’option <cite>-f</cite> permet d’afficher la liste complète.</p></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>La valeur MOUNTPOINTS est le chemin monté du disque ou de la partition en question.</p></li>
 </ul>
 </div>
 </section>
