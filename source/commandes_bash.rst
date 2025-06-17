@@ -1,9 +1,5 @@
-**Commandes Bash**
-====================
-
-**1. Commandes de base**
-------------------------
-
+**1. Commandes Bash**
+=====================
 
 **1.1 ./**
 ^^^^^^^^^^
@@ -363,4 +359,58 @@ Permet d'optenir la liste et les caractéristiques des disques et de leurs parti
 .. note::
 
     - La valeur MOUNTPOINTS est le chemin monté du disque ou de la partition en question.
- 
+
+
+**1.12 dd** 
+^^^^^^^^^^^
+
+**Syntaxe :**
+
+.. code-block:: bash
+
+    dd <inputFile> <outputFile> <option>
+   
+
+Permet de créer un support bootable à partir d'un fichier .iso.
+
+*Exemple :* 
+
+.. code-block:: bash
+
+    sudo dd if=home/aicardic/isoTest.iso of=/dev/sda status=progress
+
+    # if = inputFile, l'iso à implémenter.
+    # of = outputFile, le support à flasher.
+    # status=progress = permet d'afficher la progression du flash.
+
+.. note::
+
+    On privilégiera l'utilisation d'outils tiers comme Ventoy. 
+
+
+**1.13 checkisomd5 / sha256sum** 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Syntaxe :**
+
+.. code-block:: bash
+
+    checkisomd5<path>
+    sha256sum <option> <cheminDuSha>
+   
+
+Permet de créer un support bootable à partir d'un fichier .iso.
+
+*Exemple :* 
+
+.. code-block:: bash
+
+    sudo dd if=home/aicardic/isoTest.iso of=/dev/sda status=progress
+
+    # if = inputFile, l'iso à implémenter.
+    # of = outputFile, le support à flasher.
+    # status=progress = permet d'afficher la progression du flash.
+
+.. note::
+
+    On privilégiera l'utilisation d'outils tiers comme Ventoy. 
