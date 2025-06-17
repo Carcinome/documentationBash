@@ -4,14 +4,15 @@
    contain the root `toctree` directive.
 
 Documentation Bash
-====================
+==================
 
 Cette documentation contient un ensemble des commandes et fonctions Bash connues. 
 
 .. toctree::
-   :maxdepth: 3
-   :caption: Table des matières:
+   :maxdepth: 4
+   :caption: Table des matières :
    
    introduction
    commandes_bash
-   
+   commandes_reseau
+   commandes_openLDAP
