@@ -65,6 +65,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#dd"><strong>1.12 dd</strong></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#checkisomd5-sha256sum"><strong>1.13 checkisomd5 / sha256sum</strong></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#chown"><strong>1.14 chown</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#chmod"><strong>1.15 chmod</strong></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="commandes_reseau.html"><strong>2. Commandes réseau</strong></a><ul>
@@ -495,6 +496,48 @@ sha256sum<span class="w"> </span>-c<span class="w"> </span>~/Documents/checksum_
 <ul class="simple">
 <li><p><cite>aicardic:aicardic</cite> correspond en premier à la valeur utilsateur et en second à la valeur groupe utilisateur.</p></li>
 <li><p>Chaque valeur est optionnelle, cela peut être un groupe qui devient propriétaire ou juste un seul utilisateur.</p></li>
+</ul>
+</div>
+</section>
+<section id="chmod">
+<h2><strong>1.15 chmod</strong><a class="headerlink" href="#chmod" title="Lien vers cette rubrique"></a></h2>
+<p><strong>Syntaxe :</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span>&lt;option&gt;<span class="w"> </span>&lt;mode&gt;<span class="w"> </span>&lt;file&gt;
+</pre></div>
+</div>
+<p>Permet de modifier les autorisations d’accès à un fichier ou dossier.</p>
+<p><em>Exemple :</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span><span class="m">700</span><span class="w"> </span>~/Documents/fichier
+chmod<span class="w"> </span>-R<span class="w"> </span><span class="m">664</span><span class="w"> </span>~/Documents/dossierTest
+<span class="c1"># ici en mode octal.</span>
+chmod<span class="w"> </span>ugo+rw<span class="w"> </span>~/Documents/fichier
+<span class="c1"># ici en mode setuid/setgid.</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Concernant les modes <em>setuid/setgid</em>, les types d’autorisations appliquables sont les suivants :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>r</cite> : lecture.</p></li>
+<li><p><cite>w</cite> : écriture.</p></li>
+<li><p><cite>x</cite> : exécution (ou parcours pour les répertoires).</p></li>
+<li><p><cite>X</cite> : exécuction dans le cas où le fichier est un répertoire ou si il a déjà une autorisation d’exécution par une catégorie d’utilisateur.</p></li>
+<li><p><cite>s</cite> : utiliser l’ID du propriétaire ou du groupe propriétaire du fichier lors de son exécution.</p></li>
+<li><p><cite>t</cite> : permet d’indiquer que seul le propriétaire du repértoire ou du fichier en question peut supprimer cedit fichier.</p></li>
+<li><p><cite>u</cite> : définit les droits utilisateur.</p></li>
+<li><p><cite>g</cite> : définit les droits groupe.</p></li>
+<li><p><cite>o</cite> : définit les droits pour « autre ».</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>options connues :</em></p>
+<ul class="simple">
+<li><p>L’option <cite>-R</cite> permet d’appliquer les modifications de manière récursive.</p></li>
+<li><p>L’option <cite>-c</cite> permet de ne décrire que les fichiers dont les permissions ont réllement changé.</p></li>
+<li><p>L’option <cite>-v</cite> permet d’afficher les modifications apportées.</p></li>
 </ul>
 </div>
 </section>

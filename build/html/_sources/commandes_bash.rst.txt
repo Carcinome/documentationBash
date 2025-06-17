@@ -448,3 +448,47 @@ Permet de changer le propriétaire d'un dossier ou d'un fichier.
 
     - `aicardic:aicardic` correspond en premier à la valeur utilsateur et en second à la valeur groupe utilisateur.
     - Chaque valeur est optionnelle, cela peut être un groupe qui devient propriétaire ou juste un seul utilisateur.
+
+
+**1.15 chmod** 
+^^^^^^^^^^^^^^
+
+**Syntaxe :**
+
+.. code-block:: bash
+
+     chmod <option> <mode> <file>
+   
+
+Permet de modifier les autorisations d'accès à un fichier ou dossier.
+
+*Exemple :* 
+
+.. code-block:: bash
+
+    chmod 700 ~/Documents/fichier
+    chmod -R 664 ~/Documents/dossierTest
+    # ici en mode octal.
+    chmod ugo+rw ~/Documents/fichier
+    # ici en mode setuid/setgid.
+
+.. note::
+
+    Concernant les modes *setuid/setgid*, les types d'autorisations appliquables sont les suivants :
+
+        - `r` : lecture.
+        - `w` : écriture.
+        - `x` : exécution (ou parcours pour les répertoires).
+        - `X` : exécuction dans le cas où le fichier est un répertoire ou si il a déjà une autorisation d'exécution par une catégorie d'utilisateur.
+        - `s` : utiliser l'ID du propriétaire ou du groupe propriétaire du fichier lors de son exécution. 
+        - `t` : permet d'indiquer que seul le propriétaire du repértoire ou du fichier en question peut supprimer cedit fichier. 
+        - `u` : définit les droits utilisateur.
+        - `g` : définit les droits groupe.
+        - `o` : définit les droits pour "autre".
+
+.. note:: *options connues :*
+
+    - L'option `-R` permet d'appliquer les modifications de manière récursive.
+    - L'option `-c` permet de ne décrire que les fichiers dont les permissions ont réllement changé.
+    - L'option `-v` permet d'afficher les modifications apportées.
+
