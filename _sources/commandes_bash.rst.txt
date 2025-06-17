@@ -395,22 +395,100 @@ Permet de créer un support bootable à partir d'un fichier .iso.
 
 .. code-block:: bash
 
-    checkisomd5<path>
-    sha256sum <option> <cheminDuSha>
+    checkisomd5 <fichier_iso>
+    sha256sum <option> <fichier>
    
 
-Permet de créer un support bootable à partir d'un fichier .iso.
+Permet de vérifier l'intégrité des fichiers *.iso* pour l'algorithme `checkisomd5` et de n'importe quel type de fichiers pour `sha256sum`.
 
 *Exemple :* 
 
 .. code-block:: bash
 
-    sudo dd if=home/aicardic/isoTest.iso of=/dev/sda status=progress
+   checkisomd5 ~/Documents/moniso.iso
 
-    # if = inputFile, l'iso à implémenter.
-    # of = outputFile, le support à flasher.
-    # status=progress = permet d'afficher la progression du flash.
+   sha256sum ~/Documents/monfichier
+   # permet de générer la somme SHA-256 du fichier. 
+
+   sha256sum -c ~/Documents/checksum_monfichier
+   # permet de vérifier les sommes hachées dans le fichier spécifié (généralement un .sha256)
+
+.. note:: *options connues :*
+
+    - L'option `--quiet` permet de réduire la sortie, utile par exemple lors des vérifications.
+    - L'option `--status` permet d'utiliser les codes de sortie pour indiquer le succès ou l'échec.
+    - L'option `--tag` permet de formater la sortie pour inclure de balises comme dans les fichiers checksum par exemple.
+    - L'option `-c` permet de lancer un contrôle complet.
+
+.. warning::
+
+    On doit se trouver dans le dossier concerné pour la commande `sha256sum`.
+
+
+**1.14 chown** 
+^^^^^^^^^^^^^^
+
+**Syntaxe :**
+
+.. code-block:: bash
+
+    chown <user:group> <file>
+   # Le duo utilisateur-groupe n'est pas forcément nécessaire, cela peut être l'un ou l'autre.
+
+Permet de changer le propriétaire d'un dossier ou d'un fichier.
+
+*Exemple :* 
+
+.. code-block:: bash
+
+    sudo chown aicardic:aicardic /run/media/aicardic/SSK-EXT4/
+
 
 .. note::
 
-    On privilégiera l'utilisation d'outils tiers comme Ventoy. 
+    - `aicardic:aicardic` correspond en premier à la valeur utilsateur et en second à la valeur groupe utilisateur.
+    - Chaque valeur est optionnelle, cela peut être un groupe qui devient propriétaire ou juste un seul utilisateur.
+
+
+**1.15 chmod** 
+^^^^^^^^^^^^^^
+
+**Syntaxe :**
+
+.. code-block:: bash
+
+     chmod <option> <mode> <file>
+   
+
+Permet de modifier les autorisations d'accès à un fichier ou dossier.
+
+*Exemple :* 
+
+.. code-block:: bash
+
+    chmod 700 ~/Documents/fichier
+    chmod -R 664 ~/Documents/dossierTest
+    # ici en mode octal.
+    chmod ugo+rw ~/Documents/fichier
+    # ici en mode setuid/setgid.
+
+.. note::
+
+    Concernant les modes *setuid/setgid*, les types d'autorisations appliquables sont les suivants :
+
+        - `r` : lecture.
+        - `w` : écriture.
+        - `x` : exécution (ou parcours pour les répertoires).
+        - `X` : exécuction dans le cas où le fichier est un répertoire ou si il a déjà une autorisation d'exécution par une catégorie d'utilisateur.
+        - `s` : utiliser l'ID du propriétaire ou du groupe propriétaire du fichier lors de son exécution. 
+        - `t` : permet d'indiquer que seul le propriétaire du repértoire ou du fichier en question peut supprimer cedit fichier. 
+        - `u` : définit les droits utilisateur.
+        - `g` : définit les droits groupe.
+        - `o` : définit les droits pour "autre".
+
+.. note:: *options connues :*
+
+    - L'option `-R` permet d'appliquer les modifications de manière récursive.
+    - L'option `-c` permet de ne décrire que les fichiers dont les permissions ont réllement changé.
+    - L'option `-v` permet d'afficher les modifications apportées.
+
