@@ -492,3 +492,56 @@ Permet de modifier les autorisations d'accès à un fichier ou dossier.
     - L'option `-c` permet de ne décrire que les fichiers dont les permissions ont réllement changé.
     - L'option `-v` permet d'afficher les modifications apportées.
 
+
+**1.16 grep** 
+^^^^^^^^^^^^^
+
+**Syntaxe :**
+
+.. code-block:: bash
+
+    grep <option> <pattern> <fichier>
+   
+
+Permet de chercher des motifs et des chaînes de caractères.
+
+*Exemple :* 
+
+.. code-block:: bash
+
+    ls /usr/bin/ | grep "chains" > ~/Documents/testv2.txt
+
+    # if = inputFile, l'iso à implémenter.
+    # of = outputFile, le support à flasher.
+    # status=progress = permet d'afficher la progression du flash.
+
+.. note::
+
+    Très souvent utilisé en complément d'autres commandes. 
+
+
+**1.17 tee** 
+^^^^^^^^^^^^
+
+**Syntaxe :**
+
+.. code-block:: bash
+
+    dd <inputFile> <outputFile> <option>
+   
+
+Permet de créer un support bootable à partir d'un fichier .iso.
+
+*Exemple :* 
+
+.. code-block:: bash
+
+    sudo dd if=home/aicardic/isoTest.iso of=/dev/sda status=progress
+
+    # if = inputFile, l'iso à implémenter.
+    # of = outputFile, le support à flasher.
+    # status=progress = permet d'afficher la progression du flash.
+
+.. note::
+
+    On privilégiera l'utilisation d'outils tiers comme Ventoy. 
