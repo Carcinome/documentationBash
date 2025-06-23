@@ -549,7 +549,7 @@ Permet de rediriger la sortie d'une commande vers le terminal et un ou plusieurs
     Généralement, est en amont ou en aval d'autres commandes. 
 
 
-**1.17 echo** 
+**1.18 echo** 
 ^^^^^^^^^^^^^
 
 **Syntaxe :**
