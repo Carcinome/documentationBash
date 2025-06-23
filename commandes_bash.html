@@ -68,6 +68,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#chmod"><strong>1.15 chmod</strong></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#grep"><strong>1.16 grep</strong></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#tee"><strong>1.17 tee</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#echo"><strong>1.17 echo</strong></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="commandes_reseau.html"><strong>2. Commandes réseau</strong></a><ul>
@@ -566,21 +567,50 @@ chmod<span class="w"> </span>ugo+rw<span class="w"> </span>~/Documents/fichier
 <section id="tee">
 <h2><strong>1.17 tee</strong><a class="headerlink" href="#tee" title="Lien vers cette rubrique"></a></h2>
 <p><strong>Syntaxe :</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dd<span class="w"> </span>&lt;inputFile&gt;<span class="w"> </span>&lt;outputFile&gt;<span class="w"> </span>&lt;option&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tee<span class="w"> </span>&lt;options&gt;<span class="w"> </span>&lt;fichier&gt;
 </pre></div>
 </div>
-<p>Permet de créer un support bootable à partir d’un fichier .iso.</p>
+<p>Permet de rediriger la sortie d’une commande vers le terminal et un ou plusieurs fichiers.</p>
 <p><em>Exemple :</em></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>home/aicardic/isoTest.iso<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/dev/sda<span class="w"> </span><span class="nv">status</span><span class="o">=</span>progress
-
-<span class="c1"># if = inputFile, l&#39;iso à implémenter.</span>
-<span class="c1"># of = outputFile, le support à flasher.</span>
-<span class="c1"># status=progress = permet d&#39;afficher la progression du flash.</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lsblk<span class="w"> </span>-f<span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>~/Documents/lsblk.txt
+ping<span class="w"> </span>yum.home.arpa<span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-i<span class="w"> </span>ping-gateway.txt
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>On privilégiera l’utilisation d’outils tiers comme Ventoy.</p>
+<p><em>options connues :</em></p>
+<ul class="simple">
+<li><p>L’option <cite>-i</cite> permet d’ignorer les interruptions.</p></li>
+<li><p>L’option <cite>-a</cite> permet de de ne pas écraser le ou les fichiers cibles mais d’écrire à la suite de ceux-ci.</p></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Généralement, est en amont ou en aval d’autres commandes.</p>
+</div>
+</section>
+<section id="echo">
+<h2><strong>1.17 echo</strong><a class="headerlink" href="#echo" title="Lien vers cette rubrique"></a></h2>
+<p><strong>Syntaxe :</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span>&lt;options&gt;<span class="w"> </span>&lt;string&gt;
+</pre></div>
+</div>
+<p>Permet d’afficher ce qu’on lui demande d’afficher. Commande absolument essentielle en scripting bash.</p>
+<p><em>Exemple :</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Bonjour&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="k">$((</span><span class="nv">a</span><span class="o">=</span><span class="m">5</span><span class="o">+</span><span class="m">5</span><span class="w"> </span>,<span class="w"> </span><span class="nv">b</span><span class="o">=</span><span class="m">10</span><span class="o">+</span><span class="m">5</span><span class="w"> </span>,<span class="w"> </span><span class="nv">c</span><span class="o">=</span><span class="m">21</span><span class="o">+</span><span class="m">21</span><span class="k">))</span>
+<span class="c1"># var1=&quot;Bonjour&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">var1</span><span class="si">}</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$?</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p><cite>$?</cite> permet d’afficher le code de retour de la commande précédente.</p></li>
+<li><p><cite>echo$(())</cite> permet de faire du calcul.</p></li>
+<li><p><cite>echo $[[]]</cite> permet de faire des tests de variables.</p></li>
+</ul>
 </div>
 </section>
 </section>

@@ -527,21 +527,52 @@ Permet de chercher des motifs et des chaînes de caractères.
 
 .. code-block:: bash
 
-    dd <inputFile> <outputFile> <option>
+    tee <options> <fichier>
    
 
-Permet de créer un support bootable à partir d'un fichier .iso.
+Permet de rediriger la sortie d'une commande vers le terminal et un ou plusieurs fichiers. 
 
 *Exemple :* 
 
 .. code-block:: bash
 
-    sudo dd if=home/aicardic/isoTest.iso of=/dev/sda status=progress
+    lsblk -f | tee ~/Documents/lsblk.txt
+    ping yum.home.arpa | tee -i ping-gateway.txt
 
-    # if = inputFile, l'iso à implémenter.
-    # of = outputFile, le support à flasher.
-    # status=progress = permet d'afficher la progression du flash.
+.. note:: *options connues :*
+
+    - L'option `-i` permet d'ignorer les interruptions.
+    - L'option `-a` permet de de ne pas écraser le ou les fichiers cibles mais d'écrire à la suite de ceux-ci.
 
 .. note::
 
-    On privilégiera l'utilisation d'outils tiers comme Ventoy. 
+    Généralement, est en amont ou en aval d'autres commandes. 
+
+
+**1.17 echo** 
+^^^^^^^^^^^^^
+
+**Syntaxe :**
+
+.. code-block:: bash
+
+    echo <options> <string>
+   
+
+Permet d'afficher ce qu'on lui demande d'afficher. Commande absolument essentielle en scripting bash.
+
+*Exemple :* 
+
+.. code-block:: bash
+
+    echo "Bonjour"
+    echo $((a=5+5 , b=10+5 , c=21+21))
+    # var1="Bonjour"
+    echo ${var1}
+    echo $?
+
+.. note:: 
+
+    - `$?` permet d'afficher le code de retour de la commande précédente. 
+    - `echo$(())` permet de faire du calcul.
+    - `echo $[[]]` permet de faire des tests de variables. 
