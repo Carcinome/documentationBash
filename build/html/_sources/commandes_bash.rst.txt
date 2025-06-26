@@ -576,3 +576,5 @@ Permet d'afficher ce qu'on lui demande d'afficher. Commande absolument essentiel
     - `$?` permet d'afficher le code de retour de la commande précédente. 
     - `echo$(())` permet de faire du calcul.
     - `echo $[[]]` permet de faire des tests de variables. 
+
+
