@@ -14,7 +14,7 @@ release = 'alpha_v0.1'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['sphinx_copybutton']
+extensions = ["sphinx_copybutton"]
 
 templates_path = ['_templates']
 exclude_patterns = []
@@ -30,5 +30,4 @@ html_theme_options = {
     "collapse_navigation": False,
     "navigation_depth": -1,
 }
-
 html_baseurl = "https://github.com/Carcinome/documentationBash.git"
